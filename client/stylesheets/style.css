@@ -1,0 +1,112 @@
+
+body {
+    padding-top: 70px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.login {
+    margin-top: 50px;
+}
+
+.messages-container {
+    height: 500px;
+    border: 1px solid #DDD;
+    position: relative;
+}
+
+.messages {
+    box-sizing: border-box;
+    padding: 20px;
+    overflow: auto;
+    height: 498px;
+    width: 80%;
+}
+
+.user-list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 498px;
+    overflow: auto;
+    background: #EFEFEF;
+    margin: 0;
+    padding: 20px;
+    border-left: 1px solid #DDD;
+}
+
+.user-list li {
+    display: block;
+    color: orange;
+    font-weight: bold;
+}
+
+.username {
+    font-weight: bold;
+    color: orange;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #CCC;
+}
+
+.add-message {
+    margin-top: 20px;
+}
+
+li.away {
+    opacity: .5;
+}
+
+.away span {
+    color: #666;
+    font-style: italic;
+    font-weight: normal;
+}
+
+#sidebar-wrapper {
+  top: 52px;
+  left: -200px;
+  width: 200px;
+  background-color: #3366FF;
+  color: white;
+  position: fixed;
+  height: 100%;
+  z-index: 1;
+}
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  list-style: none;
+}
+.sidebar-nav li {
+  text-indent: 5px;
+  line-height: 25px;
+}
+.sidebar-nav li a {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+.sidebar-nav li a:hover {
+  background: rgba(255,255,255,0.25);
+  color: white;
+  text-decoration: none;
+}
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+#sidebar-wrapper.sidebar-toggle {
+  transition: all 0.3s ease-out;
+  margin-left: -200px;
+}
+@media (min-width: 768px) {
+  #sidebar-wrapper.sidebar-toggle {
+    transition: 0s;
+    left: 200px;
+  }
+}

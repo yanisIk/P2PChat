@@ -1,0 +1,47 @@
+<template name="roomList">
+
+    <div class="container">
+
+        <div class="row">
+
+            <ul class="list-group">
+
+                {{#each rooms}}
+                     <li class="list-group-item" name="{{name}}" id="{{name}}Form">
+                        <span id="roomName" name="{{name}}">{{name}}</span>
+                        <input id="password{{name}}" name="{{name}}" type="password" placeholder="password" class="input-small">
+                        <button id="joinRoomBtn" name="{{name}}" class="btn btn-primary">Join Room</button>
+                        {{#if amOwner owner}}
+                            <button id="deleteRoomBtn" name="{{name}}" class="btn btn-danger">Delete Room</button>
+                        {{/if}}
+                        <span class="badge">{{numberOfUsers name}} users</span>
+                    </li>   
+                {{/each}}
+
+            </ul>
+
+        </div>
+
+        <hr />
+
+        <div class="row">
+
+            <div class="form-group">
+
+                <label>Create a new room</label>
+                <input class="form-control room-name" type="text" placeholder="Room name" required />
+                <input class="form-control room-password" type="text" placeholder="Room password" required />
+
+            </div>
+
+            <div class="form-group clearfix">
+
+                <input type="submit" class="create-room btn btn-primary pull-right" value="Create" />
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>

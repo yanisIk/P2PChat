@@ -1,0 +1,63 @@
+<template name="user">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="messages-container">
+
+                <div class="messages">
+
+                    {{#if messages}}
+
+                        {{#each messages}}
+
+                            <p>
+                                <span class="username">{{user}}:</span>
+                                {{content}}
+                                <span class="timestamp">&ndash; <span data-livestamp="{{creation_date}}"></span></span>
+                            </p>
+
+                        {{/each}}
+
+                    {{/if}}
+
+                </div>
+
+                <ul class="user-list">
+
+                    <li>{{username}}</li>
+                    <li>{{privateReceiver}}</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="add-message">
+
+                <p class="pull-left">Logged in as: <b>{{username}}</b></p>
+
+                <div class="form-group">
+
+                    <textarea class="form-control message" placeholder="Write a message"></textarea>
+
+                </div>
+
+                <div class="form-group clearfix">
+
+                    <input type="submit" class="btn btn-primary pull-right send-message" style="margin-left: 10px;" value="Send message" />
+                    <a href="{{pathFor 'users'}}" class="btn btn-danger pull-right">Disconnect</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</template>
