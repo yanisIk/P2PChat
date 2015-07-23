@@ -23,10 +23,19 @@ Template.roomList.events = {
 
         e.preventDefault();
 
-        var name = $('.room-name').val()
+        var name = $('.room-name').val().trim();
+        name = name.replace(/\s+/g, '');
+        if(name.length < 3){
+            sAlert.warning("Room name must be minimum 3 characters");
+            return false;
+        }
+        if(/^[a-zA-Z0-9- ]*$/.test(name) == false) {
+            sAlert.warning('Room name should not contains special characters');
+            return false;
+        }
         var password = $('.room-password').val();
 
-        Meteor.call("createRoom", name, password, function(result, error){
+        Meteor.call("createRoom", name, password, function(error, result){
         	if(error){
         		sAlert.warning(error.reason);
         	}

@@ -1,7 +1,7 @@
 Template.user.helpers({
 
     username    : function() {
-        return Session.get('userName');
+        return Meteor.user().username;
     },
     privateReceiver: function() {
         return Session.get('privateReceiver');
@@ -28,10 +28,12 @@ Template.user.events = {
 
         e.preventDefault();
 
-        if( $('.message').val() === '' ) {
-            
+        if( $('.message').val() === '' ) {      
             return false;
-        
+        }
+        if($('.message').val().length > 200){
+            sAlert.warning("Your message must be under 200 characters");
+            return false;
         }
 
         message = {
@@ -52,6 +54,13 @@ Template.user.events = {
 
         if( e.keyCode === 13 ) {
 
+            if( $('.message').val() === '' ) {      
+                return false;
+            }
+            if($('.message').val().length > 200){
+                sAlert.warning("Your message must be under 200 characters");
+                return false;
+            }
             message = {
                 user            : Meteor.user().username,
                 receiver        : Session.get('privateReceiver'), 

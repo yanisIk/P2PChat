@@ -33,9 +33,11 @@ Template.room.events = {
         e.preventDefault();
 
         if( $('.message').val() === '' ) {
-            
             return false;
-        
+        }
+        if($('.message').val().length > 200){
+            sAlert.warning("Your message must be under 200 characters");
+            return false;
         }
 
         message = {
@@ -55,6 +57,14 @@ Template.room.events = {
     'keyup .message' : function(e, tmpl) {
 
         if( e.keyCode === 13 ) {
+
+            if( $('.message').val() === '' ) {      
+                return false;
+            }
+            if($('.message').val().length > 200){
+                sAlert.warning("Your message must be under 200 characters");
+                return false;
+            }
 
             message = {
                 user            : Meteor.user().username,

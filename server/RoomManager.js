@@ -10,6 +10,9 @@ Meteor.methods({
 		if(roomName.length < 3){
 			throw new Meteor.Error(500, "Cannot create room : room name must be at least 3 characters");
 		}
+		if(/^[a-zA-Z0-9- ]*$/.test(roomName) == false) {
+            throw new Meteor.Error(500, "Cannot create room : room name must not contains special characters");
+        }
 		if(Rooms.find({"name": roomName}).count() > 0){
 			throw new Meteor.Error(500, "Cannot create room : already exists");
 		}

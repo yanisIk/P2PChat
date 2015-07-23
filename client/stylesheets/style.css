@@ -84,7 +84,7 @@ li.away {
   list-style: none;
 }
 .sidebar-nav li {
-  text-indent: 5px;
+  text-indent: 10px;
   line-height: 25px;
 }
 .sidebar-nav li a {
