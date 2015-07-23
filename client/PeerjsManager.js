@@ -12,11 +12,12 @@ peer.on('connection', Meteor.bindEnvironment(function(conn) {
 		console.log("Received entering data: "+data);
 		//TODO : Validate...
 		var message = EJSON.parse(data);
+		message.isRead = false;
 		Messages.insert(message);
 		if(message.receiver){
 			sAlert.info('New private message from '+message.user+" : "+message.content);
 		}
-		else{
+		else{	
   			sAlert.info('New message in room '+message.room+' from '+message.user+' : '+message.content);
 		}
 		

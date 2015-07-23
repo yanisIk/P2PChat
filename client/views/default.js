@@ -8,6 +8,9 @@ Template.layout.helpers({
     },
     users : function(){
     	return Meteor.users.find({});
+    },
+    numberOfUnreadMessages : function(username){
+    	return Messages.find({"user": username, "receiver": Meteor.user().username, "isRead":false}).count();
     }
 
 });

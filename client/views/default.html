@@ -46,6 +46,8 @@
                          <li>
                             <a href="{{pathFor 'user'}}" title="{{this.username}}" data-id="{{this.username}}">{{this.username}}</a>
                             <span class="timestamp">&ndash; <span data-livestamp="{{status.lastLogin.date}}"></span></span>
+                            <br>
+                            <span class="badge">{{numberOfUnreadMessages this.username}} new message(s)</span>
                         </li>
                         {{/if}}
                     {{/each}}

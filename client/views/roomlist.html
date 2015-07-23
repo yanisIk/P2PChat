@@ -14,6 +14,7 @@
                         {{#if amOwner owner}}
                             <button id="deleteRoomBtn" name="{{name}}" class="btn btn-danger">Delete Room</button>
                         {{/if}}
+                        <span class="badge">{{numberOfUnreadMessages name}} new message(s)</span>
                         <span class="badge">{{numberOfUsers name}} users</span>
                     </li>   
                 {{/each}}

@@ -13,10 +13,18 @@ Template.room.helpers({
 
 });
 
-Template.room.rendered = function() {
+Template.room.onRendered(function() {
 
+    var self = this;
+    var roomName = Session.get("roomId");
+    //Reactively set messages in this template to read
+    self.autorun(function(){
+        if(Messages.find({"room": roomName, "isRead": false}).count() > 0){
+            Messages.update({"room": roomName, "isRead": false}, {$set: {"isRead": true}});
+        }
+    });
     
-}
+});
 
 Template.room.events = {
 

@@ -9,6 +9,18 @@ Template.user.helpers({
 
 });
 
+Template.user.onRendered(function(){
+
+    var self = this;
+    var privateReceiver = Session.get("privateReceiver");
+    //Reactively set messages in this template to read
+    self.autorun(function(){
+        if(Messages.find({"user": privateReceiver, "receiver": Meteor.user().username, "isRead": false}).count() > 0){
+            Messages.update({"user": privateReceiver, "receiver": Meteor.user().username, "isRead": false}, {$set: {"isRead": true}});
+        }
+    });
+
+});
 
 Template.user.events = {
 

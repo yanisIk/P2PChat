@@ -9,6 +9,9 @@ Template.roomList.helpers({
             return true;
         }
         return false;
+    },
+    numberOfUnreadMessages : function(roomName){
+        return Messages.find({"room": roomName, "isRead": false}).count();
     }
 
 });
