@@ -1,7 +1,7 @@
 
 <template name="home">
 
-    <div class="container">
+    
 
         <h1>P2P Chat</h1>
 
@@ -9,11 +9,11 @@
         
         <p>P2P Chat is built using Meteor, PeerJS for the P2P communication and MongoDB.</p>
         {{#if currentUser}}
-        	<p>Welcome {{currentUser.username}}</p>
+        	<p>Welcome <b>{{currentUser.username}}</b></p>
         {{else}}
-        	<p>Please login</p>
+        	<p>Please <b>login</b></p>
         {{/if}}
 
-    </div>
+    
 
 </template>

@@ -1,0 +1,26 @@
+<template name="layout">
+  <body>
+        {{> sAlert}}
+  </body>
+  
+  <div class="page-container">
+
+	  
+	  
+	  <div class="container">
+	  {{> header}}
+		  <div class="row row-offcanvas row-offcanvas-left">
+		    
+		    {{> sidebar}}
+		    
+		    <div id="main" class="col-xs-12 col-sm-9">
+		      
+		      
+		      	{{> yield}}
+		      
+
+		    </div>
+		  </div>
+	  </div>
+	</div>
+</template>

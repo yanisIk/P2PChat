@@ -1,4 +1,4 @@
-Template.layout.helpers({
+Template.sidebar.helpers({
 
     numberOfUsers    : function() {
         return Meteor.users.find({}).count()-1;

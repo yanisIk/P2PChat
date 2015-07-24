@@ -1,6 +1,6 @@
 <template name="roomList">
 
-    <div class="container">
+    
 
         <div class="row">
 
@@ -14,8 +14,8 @@
                         {{#if amOwner owner}}
                             <button id="deleteRoomBtn" name="{{name}}" class="btn btn-danger">Delete Room</button>
                         {{/if}}
-                        <span class="badge">{{numberOfUnreadMessages name}} new message(s)</span>
                         <span class="badge">{{numberOfUsers name}} users</span>
+                        <span class="timestamp">&ndash;created <span data-livestamp="{{creationDate}}"></span></span>
                     </li>   
                 {{/each}}
 
@@ -31,7 +31,7 @@
 
                 <label>Create a new room</label>
                 <input class="form-control room-name" type="text" placeholder="Room name" required />
-                <input class="form-control room-password" type="text" placeholder="Room password" required />
+                <input class="form-control room-password" type="password" placeholder="Room password" required />
 
             </div>
 
@@ -43,6 +43,6 @@
 
         </div>
 
-    </div>
+   
 
 </template>

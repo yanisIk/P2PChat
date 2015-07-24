@@ -1,0 +1,25 @@
+<template name="sidebar">
+  
+        {{#if currentUser}}
+            <div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
+                <ul class="nav">
+                    <li>
+                         <br>
+                         <span><b>{{numberOfUsers}} ONLINE USER(S) :</b></span>
+                         <br><br> 
+                    </li>
+                    {{#each users}}
+                        {{#if isNotMe username}}
+                         <li>
+                            <a href="{{pathFor 'user'}}" title="{{this.username}}" data-id="{{this.username}}"><b>{{this.username}}</b> <span class="timestamp">&ndash; <span data-livestamp="{{status.lastLogin.date}}"></span></span>
+                            <br>
+                            <span class="badge">{{numberOfUnreadMessages this.username}} new message(s)</span></a>
+                            
+                        </li>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+
+</template>

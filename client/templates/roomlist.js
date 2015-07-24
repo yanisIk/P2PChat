@@ -23,21 +23,13 @@ Template.roomList.events = {
 
         e.preventDefault();
 
-        var name = $('.room-name').val().trim();
-        name = name.replace(/\s+/g, '');
-        if(name.length < 3){
-            sAlert.warning("Room name must be minimum 3 characters");
-            return false;
-        }
-        if(/^[a-zA-Z0-9- ]*$/.test(name) == false) {
-            sAlert.warning('Room name should not contains special characters');
-            return false;
-        }
+        var name = $('.room-name').val();
         var password = $('.room-password').val();
+        var room = {name: name, password: password};
 
-        Meteor.call("createRoom", name, password, function(error, result){
+        Meteor.call("createRoom", room, function(error, result){
         	if(error){
-        		sAlert.warning(error.reason);
+        		sAlert.error(error.reason);
         	}
         });
 
@@ -48,8 +40,9 @@ Template.roomList.events = {
         e.preventDefault();
         var name = e.target.name;
         var password = $("#password"+name).val();
+        var room = {name: name, password: password};
 
-        Meteor.call("joinRoom", name, password, function(error, result){
+        Meteor.call("joinRoom", room, function(error, result){
         	if(error){
                 if(error.reason == "You are already in the room"){
                     Router.go("room", {name: name});
@@ -57,7 +50,6 @@ Template.roomList.events = {
                 else{
                     sAlert.error(error.reason);
                 }
-        		
         	}
         	else{
         		Router.go("room", {name: name});
@@ -69,15 +61,13 @@ Template.roomList.events = {
         e.preventDefault();
         var name = e.target.name;
         var password = $("#password"+name).val();
+        var room = {name: name, password: password};
 
-        Meteor.call("deleteRoom", name, password, function(error, result){
+        Meteor.call("deleteRoom", room, function(error, result){
             if(error){
                 sAlert.error(error.reason); 
             }
         });
-        
-
-
     }
 
 }
