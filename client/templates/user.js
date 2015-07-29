@@ -31,7 +31,7 @@ Template.user.events = {
         message = {
             user            : Meteor.user().username,
             receiver        : Session.get('privateReceiver'), 
-            content         : $('.message').val(),
+            content         : $('.message').val().trim(),
             creation_date   : new Date()
         };
 
@@ -54,7 +54,7 @@ Template.user.events = {
             message = {
                 user            : Meteor.user().username,
                 receiver        : Session.get('privateReceiver'), 
-                content         : $('.message').val(),
+                content         : $('.message').val().trim(),
                 creation_date   : new Date()
             };
 

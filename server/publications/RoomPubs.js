@@ -2,7 +2,7 @@ Meteor.publish("rooms", function(){
 	if(!this.userId){
 		throw new Meteor.Error(403, "Unauthorized");
 	}
-	return Rooms.find({});
+	return Rooms.find({},{fields: {password: 0}});
 });
 
 Meteor.publish("roomUsers", function(roomName){

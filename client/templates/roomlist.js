@@ -27,11 +27,31 @@ Template.roomList.events = {
         var password = $('.room-password').val();
         var room = {name: name, password: password};
 
-        Meteor.call("createRoom", room, function(error, result){
-        	if(error){
-        		sAlert.error(error.reason);
-        	}
-        });
+        try{
+            Meteor.call("createRoom", room, function(error, result){
+                if(error){
+                    sAlert.error(error.reason);
+                }
+                else{
+                    Meteor.call("joinRoom", room, function(error, result){
+                        if(error){
+                            if(error.reason == "You are already in the room"){
+                                Router.go("room", {name: name});
+                            }
+                            else{
+                                sAlert.error(error.reason);
+                            }
+                        }
+                        else{
+                            Router.go("room", {name: name});
+                        }
+                    });
+                }
+            });
+        }
+        catch(e){
+            //Don't show client side method exceptions
+        }
 
     },
 
@@ -41,20 +61,25 @@ Template.roomList.events = {
         var name = e.target.name;
         var password = $("#password"+name).val();
         var room = {name: name, password: password};
-
-        Meteor.call("joinRoom", room, function(error, result){
-        	if(error){
-                if(error.reason == "You are already in the room"){
-                    Router.go("room", {name: name});
+        try{
+            Meteor.call("joinRoom", room, function(error, result){
+                if(error){
+                    if(error.reason == "You are already in the room"){
+                        Router.go("room", {name: name});
+                    }
+                    else{
+                        sAlert.error(error.reason);
+                    }
                 }
                 else{
-                    sAlert.error(error.reason);
+                    Router.go("room", {name: name});
                 }
-        	}
-        	else{
-        		Router.go("room", {name: name});
-        	}
-        });
+            });
+        }
+        catch(e){
+            //Don't show client side method exceptions
+        }
+        
     },
     'click #deleteRoomBtn' : function(e, tmpl) {
 
@@ -63,11 +88,17 @@ Template.roomList.events = {
         var password = $("#password"+name).val();
         var room = {name: name, password: password};
 
-        Meteor.call("deleteRoom", room, function(error, result){
+        try{
+            Meteor.call("deleteRoom", room, function(error, result){
             if(error){
                 sAlert.error(error.reason); 
             }
-        });
+            });
+        }
+        catch(e){
+            //Don't show client side method exceptions
+        }
+        
     }
 
 }

@@ -35,7 +35,7 @@ Template.room.events = {
         message = {
             user            : Meteor.user().username,
             room            : Session.get('roomId'), 
-            content         : $('.message').val(),
+            content         : $('.message').val().trim(),
             creation_date   : new Date()
         };
 
@@ -58,7 +58,7 @@ Template.room.events = {
             message = {
                 user            : Meteor.user().username,
                 room            : Session.get('roomId'), 
-                content         : $('.message').val(),
+                content         : $('.message').val().trim(),
                 creation_date   : new Date()
             };
 
